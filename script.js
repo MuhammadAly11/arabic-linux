@@ -1,9 +1,11 @@
 function parseMD(lines) {
+  let wrapper = document.querySelector(".wrapper");
+
   let heading = document.createElement("h1");
-  document.body.appendChild(heading);
+  wrapper.appendChild(heading);
 
   let ul = document.createElement("ul");
-  document.body.appendChild(ul);
+  wrapper.appendChild(ul);
 
   lines.forEach(line => {
     let text = line.split(" ").slice(1).join(" ");
