@@ -10,8 +10,17 @@ function parseMD(lines) {
     if (line.startsWith("# ")) {
       heading.textContent = text;
     } else if (line.startsWith("- ")) {
+      let a = document.createElement("a");
       let li = document.createElement("li");
-      li.textContent = text;
+
+      let link = text.match(/\(.*\)/)[0].replace(/\(|\)/g, "");
+      console.log(link);
+      let linkText = text.match(/\[.*\]/)[0].replace(/\[|\]/g, "");
+      console.log(linkText);
+
+      a.href = link;
+      a.textContent = linkText;
+      li.appendChild(a)
       ul.appendChild(li);
     }
   });
@@ -24,4 +33,4 @@ fetch("README.md")
     const lines = text.split("\n");
     parseMD(lines);
   })
-  .catch(e => console.log(e));
+  .catch(e => console.error(e));
